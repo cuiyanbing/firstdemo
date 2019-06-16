@@ -5,10 +5,8 @@ import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import sun.security.util.SecurityConstants;
-
-import java.security.Security;
 
 /**
  * @author cui
@@ -16,6 +14,7 @@ import java.security.Security;
  */
 @Configuration
 public class TomcatConfig {
+    @Bean
     TomcatServletWebServerFactory tomcatServletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory(){
             @Override
@@ -37,7 +36,7 @@ public class TomcatConfig {
         connector.setScheme("http");
         connector.setPort(9988);
         connector.setSecure(false);
-        connector.setRedirectPort(8080);
+        connector.setRedirectPort(9111);
         return connector;
     }
 }
