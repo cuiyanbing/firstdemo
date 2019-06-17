@@ -1,9 +1,13 @@
 package com.cui.firstdemo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * @author cui
@@ -11,10 +15,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-@ConfigurationProperties(prefix = "book")
 public class Book {
-    private Integer id;
+    private Date publicationDate;
     private String name;
     private String author;
-    private Float price;
+    protected Float price;
 }
