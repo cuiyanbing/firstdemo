@@ -30,6 +30,11 @@ public class HelloController {
         }
     }
 
+    @RequestMapping("/hello2")
+    public String hello2() {
+        return "ok";
+    }
+
     @RequestMapping("bing")
     public String book(@ModelAttribute("b") Book book, @ModelAttribute("a") Author author) {
         return book.toString() + "------" + author.toString();
