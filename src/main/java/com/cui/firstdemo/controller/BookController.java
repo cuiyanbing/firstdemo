@@ -1,8 +1,8 @@
 package com.cui.firstdemo.controller;
 
 import com.cui.firstdemo.domain.Book;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Date;
 
 /**
@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @RestController
 public class BookController {
-    @GetMapping("/books")
+    @GetMapping("/book")
     public Book books() {
         Book book1 = new Book();
         book1.setAuthor("罗贯中");
@@ -19,5 +19,16 @@ public class BookController {
         book1.setPrice(30f);
         book1.setPublicationDate(new Date());
         return book1;
+    }
+
+    @PostMapping("/")
+    @CrossOrigin(value = "http://localhost:9998", maxAge = 18000, allowedHeaders = "*")
+    public String addBook(String name) {
+        return "receive:" + name;
+    }
+    @DeleteMapping("/{id}")
+    @CrossOrigin(value = "http://localhost:9998", maxAge = 18000, allowedHeaders = "*")
+    public String deleteBookById(@PathVariable Long id) {
+        return String.valueOf(id);
     }
 }
