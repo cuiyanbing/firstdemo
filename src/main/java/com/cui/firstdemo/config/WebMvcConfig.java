@@ -3,6 +3,7 @@ package com.cui.firstdemo.config;
 import com.cui.firstdemo.handler.MyInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -12,10 +13,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new MyInterceptor())
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/hello");
+//    }
+
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/hello");
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/index").setViewName("index");
+        
     }
 }

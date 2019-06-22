@@ -14,16 +14,29 @@ import java.io.IOException;
  * @since 创建时间：2019/6/20 19:47
  * 添加WebServlet组件
  */
-@WebServlet("/my")
+@WebServlet(urlPatterns = "/mySer")
 public class MyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        System.out.println("1111");
+        System.out.println("name--->" + req.getParameter("name"));
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("name--->" + req.getParameter("name"));
+        System.out.println("222");
+        doGet(req, resp);
+    }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.service(req, resp);
+    }
+
+    @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        super.service(req, res);
     }
 }
 
@@ -46,6 +59,7 @@ class MyFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("MyFilter---->doFilter");
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 }
 
