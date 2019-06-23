@@ -16,5 +16,6 @@ public class UserService {
 
     public void deleteUserById(Integer id) {
         System.out.println("delete....");
+        int i = 2 / 0;
     }
 }

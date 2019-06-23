@@ -45,4 +45,9 @@ public class HelloController {
         int i = 1 / 0;
         return "hi";
     }
+
+    @RequestMapping("/index")
+    public String in() {
+        return "index";
+    }
 }
