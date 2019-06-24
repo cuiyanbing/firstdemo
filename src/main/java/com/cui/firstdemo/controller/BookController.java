@@ -1,9 +1,10 @@
 package com.cui.firstdemo.controller;
 
 import com.cui.firstdemo.domain.Book;
+import com.cui.firstdemo.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author cui
@@ -11,24 +12,31 @@ import java.util.Date;
  */
 @RestController
 public class BookController {
-    @GetMapping("/book")
-    public Book books() {
-        Book book1 = new Book();
-        book1.setAuthor("罗贯中");
-        book1.setName("三国演义");
-        book1.setPrice(30f);
-        book1.setPublicationDate(new Date());
-        return book1;
+    @Autowired
+    private BookService bookService;
+    @Autowired
+    private Book book;
+
+    @RequestMapping("/addbook")
+    public void addBook() {
+        bookService.addBook(book);
+    }
+    @RequestMapping("/updateBookById")
+    public void updateBookById() {
+        bookService.updateBook(book);
+    }
+    @RequestMapping("/deleteBookById")
+    public void deleteBookById(Integer id) {
+        bookService.deleteBookById(id);
     }
 
-    @PostMapping("/")
-    @CrossOrigin(value = "http://localhost:9998", maxAge = 18000, allowedHeaders = "*")
-    public String addBook(String name) {
-        return "receive:" + name;
+    @RequestMapping("/getBookById")
+    public Book getBookById(Integer id) {
+        return bookService.getBookById(id);
     }
-    @DeleteMapping("/{id}")
-    @CrossOrigin(value = "http://localhost:9998", maxAge = 18000, allowedHeaders = "*")
-    public String deleteBookById(@PathVariable Long id) {
-        return String.valueOf(id);
+
+    @RequestMapping("/getAllBooks")
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
     }
 }

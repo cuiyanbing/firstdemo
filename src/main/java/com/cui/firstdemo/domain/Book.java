@@ -16,8 +16,7 @@ import java.util.Date;
 @Component
 @Data
 public class Book {
-    private Date publicationDate;
     private String name;
     private String author;
-    protected Float price;
+    protected Integer id;
 }
